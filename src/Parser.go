@@ -72,6 +72,10 @@ type Packet struct {
 	JpgData            []byte
 }
 
+func (p Packet) IsFrameData() bool {
+	return p.CommonHeader.PayloadType == COMMON_HEADER_TYPE_IMAGE
+}
+
 func threeByteArrayToUint32(b [3]byte) uint32 {
 	padding := make([]byte, 1)
 	s := slices.Concat(padding, b[:])
